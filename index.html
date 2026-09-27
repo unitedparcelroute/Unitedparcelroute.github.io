@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="theme-color"
+        content="#0f172a"
+    >
+
+    <title>United Parcel Shipping</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="main-header">
+
+        <div class="header-container">
+
+            <div class="brand">
+                <div class="brand-icon">
+                    📦
+                </div>
+
+                <div>
+                    <h1>
+                        United Parcel Shipping
+                    </h1>
+
+                    <p>
+                        Reliable Shipment Tracking
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+    <main>
+
+        <section class="hero-section">
+
+            <div class="hero-content">
+
+                <span class="hero-badge">
+                    📍 Track Your Shipment
+                </span>
+
+                <h2>
+                    Track Your Package
+                </h2>
+
+                <p>
+                    Enter your tracking number below to see
+                    the current location and delivery status
+                    of your shipment.
+                </p>
+
+
+                <!-- TRACKING FORM -->
+                <form
+                    id="trackingForm"
+                    class="tracking-form"
+                >
+
+                    <div class="tracking-input-wrapper">
+
+                        <span class="tracking-icon">
+                            🔎
+                        </span>
+
+                        <input
+                            type="text"
+                            id="trackingNumber"
+                            placeholder="Enter tracking number"
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        id="trackButton"
+                    >
+                        🔍 Track Shipment
+                    </button>
+
+                </form>
+
+
+                <!-- MESSAGE -->
+                <div
+                    id="trackingMessage"
+                    class="tracking-message hidden"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SHIPMENT RESULT -->
+        <section
+            id="shipmentResult"
+            class="shipment-result hidden"
+        >
+
+            <div class="result-container">
+
+                <!-- RESULT HEADER -->
+                <div class="result-header">
+
+                    <div>
+
+                        <span class="result-label">
+                            Tracking Number
+                        </span>
+
+                        <h2 id="resultTrackingNumber">
+                            —
+                        </h2>
+
+                    </div>
+
+                    <div
+                        id="resultStatus"
+                        class="status-badge"
+                    >
+                        —
+                    </div>
+
+                </div>
+
+
+                <!-- PROGRESS TRACKER -->
+                <div class="progress-section">
+
+                    <h3>
+                        Shipment Progress
+                    </h3>
+
+                    <div
+                        id="shipmentProgress"
+                        class="shipment-progress"
+                    >
+
+                        <div class="progress-line"></div>
+
+                        <div
+                            class="progress-step"
+                            data-status="Shipment Created"
+                        >
+                            <div class="progress-circle">
+                                ✓
+                            </div>
+
+                            <span>
+                                Created
+                            </span>
+                        </div>
+
+
+                        <div
+                            class="progress-step"
+                            data-status="Picked Up"
+                        >
+                            <div class="progress-circle">
+                                ✓
+                            </div>
+
+                            <span>
+                                Picked Up
+                            </span>
+                        </div>
+
+
+                        <div
+                            class="progress-step"
+                            data-status="Processing"
+                        >
+                            <div class="progress-circle">
+                                ✓
+                            </div>
+
+                            <span>
+                                Processing
+                            </span>
+                        </div>
+
+
+                        <div
+                            class="progress-step"
+                            data-status="In Transit"
+                        >
+                            <div class="progress-circle">
+                                ✓
+                            </div>
+
+                            <span>
+                                In Transit
+                            </span>
+                        </div>
+
+
+                        <div
+                            class="progress-step"
+                            data-status="Arrived at Facility"
+                        >
+                            <div class="progress-circle">
+                                ✓
+                            </div>
+
+                            <span>
+                                Facility
+                            </span>
+                        </div>
+
+
+                        <div
+                            class="progress-step"
+                            data-status="Out for Delivery"
+                        >
+                            <div class="progress-circle">
+                                ✓
+                            </div>
+
+                            <span>
+                                Out for Delivery
+                            </span>
+                        </div>
+
+
+                        <div
+                            class="progress-step"
+                            data-status="Delivered"
+                        >
+                            <div class="progress-circle">
+                                ✓
+                            </div>
+
+                            <span>
+                                Delivered
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CURRENT STATUS -->
+                <div class="current-status-card">
+
+                    <div class="current-status-icon">
+                        📍
+                    </div>
+
+                    <div class="current-status-content">
+
+                        <span>
+                            Current Location
+                        </span>
+
+                        <strong id="resultLocation">
+                            —
+                        </strong>
+
+                        <p id="resultStatusText">
+                            —
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ROUTE -->
+                <div class="route-card">
+
+                    <div class="route-point">
+
+                        <span class="route-icon">
+                            🟢
+                        </span>
+
+                        <div>
+                            <small>
+                                Origin
+                            </small>
+
+                            <strong id="resultOrigin">
+                                —
+                            </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="route-line">
+                        ✈️
+                    </div>
+
+
+                    <div class="route-point">
+
+                        <span class="route-icon">
+                            🔴
+                        </span>
+
+                        <div>
+                            <small>
+                                Destination
+                            </small>
+
+                            <strong id="resultDestination">
+                                —
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DELIVERY -->
+                <div class="delivery-card">
+
+                    <div class="delivery-icon">
+                        📅
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Estimated Delivery
+                        </span>
+
+                        <strong id="resultEstimatedDelivery">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SHIPMENT INFORMATION -->
+                <div class="information-section">
+
+                    <h3>
+                        Shipment Information
+                    </h3>
+
+
+                    <div class="information-grid">
+
+                        <div class="information-card">
+
+                            <span>
+                                Receiver
+                            </span>
+
+                            <strong id="resultReceiver">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="information-card">
+
+                            <span>
+                                Package
+                            </span>
+
+                            <strong id="resultPackage">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="information-card">
+
+                            <span>
+                                Weight
+                            </span>
+
+                            <strong id="resultWeight">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="information-card">
+
+                            <span>
+                                Shipping Type
+                            </span>
+
+                            <strong id="resultShippingType">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TRACKING HISTORY -->
+                <div class="history-section">
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <span>
+                                Shipment Updates
+                            </span>
+
+                            <h3>
+                                Tracking History
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="trackingTimeline"
+                        class="tracking-timeline"
+                    >
+
+                        <div class="timeline-empty">
+                            No tracking updates are available yet.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TRACK ANOTHER -->
+                <div class="track-again-section">
+
+                    <h3>
+                        Track Another Shipment
+                    </h3>
+
+                    <button
+                        type="button"
+                        onclick="trackAnotherShipment()"
+                        class="secondary-btn"
+                    >
+                        🔍 Track Another Package
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FEATURES -->
+        <section class="features-section">
+
+            <div class="features-container">
+
+                <div class="section-title">
+
+                    <span>
+                        Why Use Our Tracking?
+                    </span>
+
+                    <h2>
+                        Stay Updated Every Step
+                    </h2>
+
+                </div>
+
+
+                <div class="features-grid">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            📍
+                        </div>
+
+                        <h3>
+                            Live Tracking
+                        </h3>
+
+                        <p>
+                            Check the latest available
+                            shipment location and status.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            🔔
+                        </div>
+
+                        <h3>
+                            Shipment Updates
+                        </h3>
+
+                        <p>
+                            Follow your package through
+                            every stage of its journey.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            📦
+                        </div>
+
+                        <h3>
+                            Shipment Details
+                        </h3>
+
+                        <p>
+                            View important information about
+                            your package in one place.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <strong>
+                    📦 United Parcel Shipping
+                </strong>
+
+                <p>
+                   Number One Shipment tracking platform.
+                </p>
+
+            </div>
+
+
+      
+
+                <p>
+                    © 2026 United Parcel Shipping.
+                  
+                    Your number one Shipping Company
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SUPABASE -->
+    <script
+        src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"
+    ></script>
+
+    <script src="js/supabase.js"></script>
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
